@@ -16,7 +16,8 @@
                 <input type='password' name='password' id='password' required>
             </div>
             <div>
-                <input type='submit' value='Log in'>
+                <input type='submit' value='Login'>
             </div>
+        </form>
     </body>
 </html>

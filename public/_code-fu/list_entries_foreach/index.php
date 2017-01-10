@@ -22,20 +22,20 @@ if (!isset($_POST['firstname'])) {
             include 'output.html.php';
             exit();
         }
-
+        
         try {
             $sql = 'SELECT joketext FROM joke';
             $result = $conn->query($sql);
         } catch (PDOException $e) {
-            $output = "SQL command on $dbtitle had failed: " . $e->getMessage();
+            $output = "SQL command on $dbtitle has failed: " . $e->getMessage();
             include 'output.html.php';
             exit();
         }
 
-        while ($row = $result->fetch()) {
+        foreach ($result as $row) {
             $jokes[] = $row['joketext'];
-        } 
-        
+        }
+
         include 'jokes.html.php';
 
         $output = "SQL command on $dbtitle was performed successfully.";
@@ -45,6 +45,5 @@ if (!isset($_POST['firstname'])) {
         include 'form.html.php';
     }
 }
-
 
 ?>
