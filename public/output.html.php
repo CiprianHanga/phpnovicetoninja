@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Output</title>
-    </head>
-    <body>
-        <p>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>
         <?php echo $output; ?>
-        </p>
-    <body>
+    </p>
+</body>
 </html>

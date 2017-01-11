@@ -1,19 +1,22 @@
 <?php
-echo '<cite>Premature optimization is the root of all evil.</cite> --Donald Knuth<br>';
-
-if (!isset($_POST['firstname'])) {
-    include 'login_form.html.php';
-} else {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $password = $_POST['password'];
-
-    if ($firstname=='Ciprian' and $lastname=='Hanga' and $password=='secret') {
-        echo 'OK';
-    } else {
-        include 'login_form.html.php';
+if (get_magic_quotes_gpc()) {
+    $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
+    while (list($key, $val) = $each($process)) {
+        foreach ($val as $k => $v) {
+            unset($process[$key][$k]);
+            if (is_array($v)) {
+                $process[$key][stripslashes($k)] = $v;
+                $process[] = &$process[$key][stripslashes($k)];
+            } else {
+                $process[$key][stripslashes($k)] = stripslashes($v);
+            }
+        }
     }
-
+    unset($process);
 }
 
-?>
+if (isset($_GET['addjoke'])) {
+    include 'addjoke_form.html.php';
+    exit();
+}
+
