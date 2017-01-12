@@ -21,7 +21,7 @@ if (isset($_GET['addjoke'])) {
 }
 
 try {
-    $servername =  'localhost';
+    $servername = 'localhost';
     $dbname = 'ijdb';
     $dbtitle = 'Internet Jokes Database';
     $username = 'ijdbuser';
