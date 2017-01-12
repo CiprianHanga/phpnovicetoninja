@@ -1,6 +1,4 @@
 <?php
-echo '<cite>Premature optimization is the root of all evil.</cite> --Donald Knuth';
-
 if (isset($_GET['addjoke'])) {
     include 'addjoke_form.html.php';
     exit();
