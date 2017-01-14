@@ -4,53 +4,53 @@ if (isset($_GET['addjoke'])) {
     exit();
 }
 
-    try {
-        $servername = 'localhost';
-        $dbname = 'ijdb';
-        $dbtitle = 'Internet Jokes Database';
-        $username = 'ijdbuser';
-        $password = 'secret';
+try {
+    $servername = 'localhost';
+    $dbname = 'ijdb';
+    $dbtitle = 'Internet Jokes Database';
+    $username = 'ijdbuser';
+    $password = 'secret';
 
-        $conn = new PDO ("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conn->exec('SET NAMES "utf8"');
+    $conn = new PDO ("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->exec('SET NAMES "utf8"');
+} catch (PDOException $e) {
+    $output = "Connection to $dbtitle on $servername has failed: " . $e->getMessage();
+    include 'output.html.php';
+    exit();
+}
+
+if (isset($_POST['joketext'])) {
+    try {
+        $sql = 'INSERT INTO joke SET
+            joketext = :joketext,
+            jokedate = CURDATE()';
+        $s = $conn->prepare($sql);
+        $s->bindValue(':joketext', $_POST['joketext']);
+        $s->execute();
     } catch (PDOException $e) {
-        $output = "Connection to $dbtitle on $servername has failed: " . $e->getMessage();
+        $output = "Error adding submitted joke to $dbtitle: " . $e->getMessage();
         include 'output.html.php';
         exit();
     }
 
-    if (isset($_POST['joketext'])) {
-        try {
-            $sql = 'INSERT INTO joke SET
-                joketext = :joketext,
-                jokedate = CURDATE()';
-            $s = $conn->prepare($sql);
-            $s->bindValue(':joketext', $_POST['joketext']);
-            $s->execute();
-        } catch (PDOException $e) {
-            $output = "Error adding submitted joke to $dbtitle: " . $e->getMessage();
-            include 'output.html.php';
-            exit();
-        }
+        header('Location: .');
+        exit();
 
-            header('Location: .');
-            exit();
+}
 
+if (isset($_GET['deletejoke'])) {
+    try {
+        $sql = 'DELETE FROM joke WHERE id = :id';
+        $s = $conn->prepare($sql);
+        $s->bindValue(':id', $_POST['id']);
+        $s->execute();
+    } catch (PDOException $e) {
+        $output = "Error deleting joke from $dbtitle: " . $e->getMessage();
+        include 'output.html.php';
+        exit();
     }
-
-    if (isset($_GET['deletejoke'])) {
-        try {
-            $sql = 'DELETE FROM joke WHERE id = :id';
-            $s = $conn->prepare($sql);
-            $s->bindValue(':id', $_POST['id']);
-            $s->execute();
-        } catch (PDOException $e) {
-            $output = "Error deleting joke from $dbtitle: " . $e->getMessage();
-            include 'output.html.php';
-            exit();
-        }
-    }
+}
 
 try {
     $sql = 'SELECT id, joketext FROM joke';
