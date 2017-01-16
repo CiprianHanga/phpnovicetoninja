@@ -52,6 +52,7 @@ if (isset($_GET['deletejoke'])) {
     }
 }
 
+// this is for displaying the 
 try {
     $sql = 'SELECT id, joketext FROM joke';
     $result = $conn->query($sql);
