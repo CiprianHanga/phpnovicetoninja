@@ -8,7 +8,7 @@
     <p><a href="?addjoke">Add your own jokes to the Database!</a></p>
     <p>Here are all the jokes in the database:</p>
     <?php foreach ($jokes as $joke): ?>
-    <form action='?deletejoke'' method='post'>
+    <form action='?deletejoke' method='post'>
     <blockquote>
         <p>
         <?php echo htmlspecialchars($joke['text'], ENT_QUOTES, 'UTF-8'); ?>

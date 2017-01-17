@@ -38,9 +38,6 @@ if (!isset($_POST['firstname'])) {
 
         include 'jokes.html.php';
 
-        $output = "SQL command on $dbtitle was performed successfully.";
-        include 'output.html.php';
-
     } else {
         include 'form.html.php';
     }
