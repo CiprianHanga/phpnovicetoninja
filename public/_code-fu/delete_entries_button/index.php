@@ -4,6 +4,7 @@ if (isset($_GET['addjoke'])) {
     exit();
 }
 
+// connection
 try {
     $servername = 'localhost';
     $dbname = 'ijdb';
@@ -20,6 +21,7 @@ try {
     exit();
 }
 
+// insert joke
 if (isset($_POST['joketext'])) {
     try {
         $sql = 'INSERT INTO joke SET
@@ -39,6 +41,7 @@ if (isset($_POST['joketext'])) {
 
 }
 
+// delete joke
 if (isset($_GET['deletejoke'])) {
     try {
         $sql = 'DELETE FROM joke WHERE id = :id';
@@ -52,7 +55,7 @@ if (isset($_GET['deletejoke'])) {
     }
 }
 
-// this is for displaying the 
+// display all jokes
 try {
     $sql = 'SELECT id, joketext FROM joke';
     $result = $conn->query($sql);
@@ -61,6 +64,7 @@ try {
     include 'output.html.php';
     exit();
 }
+
 
 foreach ($result as $row) {
     // $jokes[] = $row['joketext'];

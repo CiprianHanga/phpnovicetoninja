@@ -13,6 +13,12 @@ if (!isset($_POST['firstname'])) {
         $dbname = 'ijdb';
         $dbtitle = 'Internet Jokes Database';
 
+    $servername = 'localhost';
+    $dbname = 'ijdb';
+    $dbtitle = 'Internet Jokes Database';
+    $username = 'ijdbuser';
+    $password = 'secret';
+
         try {
             $conn = new PDO ("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -34,12 +40,10 @@ if (!isset($_POST['firstname'])) {
 
         while ($row = $result->fetch()) {
             $jokes[] = $row['joketext'];
+
         } 
         
         include 'jokes.html.php';
-
-        $output = "SQL command on $dbtitle was performed successfully.";
-        include 'output.html.php';
 
     } else {
         include 'form.html.php';
