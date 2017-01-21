@@ -1,27 +1,30 @@
 <?php
+echo '<cite>Premature optimization is the root of all evil.</cite> --Donald Knuth<br>';
+
+// redirect to addjoke form if GET value is provided
 if (isset($_GET['addjoke'])) {
     include 'addjoke_form.html.php';
     exit();
 }
 
-// connection
+// DB connection
 try {
+    $username = 'ijdbuser';
+    $password = 'secret';
     $servername = 'localhost';
     $dbname = 'ijdb';
     $dbtitle = 'Internet Jokes Database';
-    $username = 'ijdbuser';
-    $password = 'secret';
 
-    $conn = new PDO ("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO ("mysql:localhost=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conn->exec('SET NAMES "utf8"');
+    $conn->exec('SET NAMES "UTF8"');
 } catch (PDOException $e) {
-    $output = "Connection to $dbtitle on $servername has failed: " . $e->getMessage();
+    $output = "Error connecting to $dbtitle: " . $e->getMessage();
     include 'output.html.php';
     exit();
 }
 
-// insert joke
+// add joke
 if (isset($_POST['joketext'])) {
     try {
         $sql = 'INSERT INTO joke SET
@@ -31,14 +34,13 @@ if (isset($_POST['joketext'])) {
         $s->bindValue(':joketext', $_POST['joketext']);
         $s->execute();
     } catch (PDOException $e) {
-        $output = "Error adding submitted joke to $dbtitle: " . $e->getMessage();
+        $output = "Error adding joke to the database: " . $e->getMessage();
         include 'output.html.php';
         exit();
     }
 
     header('Location: .');
     exit();
-
 }
 
 // delete joke
@@ -49,13 +51,13 @@ if (isset($_GET['deletejoke'])) {
         $s->bindValue(':id', $_POST['id']);
         $s->execute();
     } catch (PDOException $e) {
-        $output = "Error deleting joke from $dbtitle: " . $e->getMessage();
+        $output = "Error deleting joke from the database: " . $e->getMessage();
         include 'output.html.php';
         exit();
     }
 }
 
-// display all jokes
+// show jokes
 try {
     $sql = 'SELECT id, joketext FROM joke';
     $result = $conn->query($sql);
@@ -65,17 +67,14 @@ try {
     exit();
 }
 
-
 foreach ($result as $row) {
-    // $jokes[] = $row['joketext'];
-    $jokes[] = array('id' => $row['id'], 'text' => $row['joketext']);
+    $jokes[] = array (
+        'id' => $row['id'],
+        'text' => $row['joketext']
+        );
 }
-// Deci: cand vrei mai mult de o singura valoare dintr-un array, folosesti 
-// tipul de declarare ptr associative arrays, folosind in loc de valori ''
-// acceasi variabila temporara $row, din care insa extragi element cu element.
 
-include 'front.html.php';
-
+include 'jokes.html.php';
 
 
 

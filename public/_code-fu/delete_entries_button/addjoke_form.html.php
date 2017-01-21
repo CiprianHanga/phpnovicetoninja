@@ -12,12 +12,12 @@
     </head>
     <body>
         <form action='?' method='post'>
-            <div>
-                <label for='joketext'>Insert your joke here:</label>
+            <div><label for='joketext'>Insert your joke here:</label>
                 <textarea name="joketext" id="joketext" cols="30" rows="10"></textarea>
-                <div>
-                    <input type="submit" value="Submit">
-                </div>
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
         </form>
     </body>
 </html>
