@@ -29,7 +29,8 @@ if (isset($_POST['joketext'])) {
     try {
         $sql = 'INSERT INTO joke SET
             joketext = :joketext,
-            jokedate = CURDATE()';
+            jokedate = CURDATE(),
+            authorid = 1';
         $s = $conn->prepare($sql);
         $s->bindValue(':joketext', $_POST['joketext']);
         $s->execute();
@@ -59,7 +60,9 @@ if (isset($_GET['deletejoke'])) {
 
 // show jokes
 try {
-    $sql = 'SELECT id, joketext FROM joke';
+    $sql = 'SELECT joke.id, joketext, name, email
+    FROM joke INNER JOIN author
+    ON authorid = author.id';
     $result = $conn->query($sql);
 } catch (PDOException $e) {
     $output = "Error fetching jokes on $dbtitle: " . $e->getMessage();
@@ -70,7 +73,9 @@ try {
 foreach ($result as $row) {
     $jokes[] = array (
         'id' => $row['id'],
-        'text' => $row['joketext']
+        'text' => $row['joketext'],
+        'name' => $row['name'],
+        'email' => $row['email']
         );
 }
 
