@@ -1,3 +1,3 @@
 <?php
 
-include './includes/dbconnect.php';
+require './includes/dbconnect.php';
