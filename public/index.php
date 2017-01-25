@@ -1,8 +1,8 @@
 <?php
-include './includes/magicquotes.php';
-include './includes/header.html.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/magicquotes.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.html.php';
 
-include 'jokes.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/test.php';
 
-include './includes/footer.html.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.html.php';
 ?>

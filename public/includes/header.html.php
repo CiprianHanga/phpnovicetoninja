@@ -5,5 +5,5 @@
     <title>Sandbox Testing</title>
 </head>
 <body>
-<?php include 'quote.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/quote.php'; ?>
 
