@@ -13,7 +13,7 @@ try {
     // echo "OK";
 } catch (PDOException $e) {
     $output = "Error connecting to $dbtitle on $servername: " . $e->getMessage();
-    include 'output.html.php';
+    include  $_SERVER['DOCUMENT_ROOT'] .'/includes/redirects/output.html.php';
     exit();
 }
 
