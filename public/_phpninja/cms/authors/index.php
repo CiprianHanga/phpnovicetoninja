@@ -24,7 +24,7 @@ if (isset($_POST['action']) and  $_POST['action'] == 'Delete') {
 
     // Get jokes belonging to author
     try {
-        $slq = 'SELECT id FROM joke WHERE authorid = :id';
+        $sql = 'SELECT id FROM joke WHERE authorid = :id';
         $s = $conn->prepare($sql);
         $s->bindValue(':id', $_POST['id']);
         $s->execute();
@@ -80,3 +80,4 @@ if (isset($_POST['action']) and  $_POST['action'] == 'Delete') {
     header('Location: .');
     exit();
 }
+
