@@ -24,3 +24,6 @@ echo '<tt><pre>' . var_export($address, TRUE) . '</pre></tt>';
 
 echo '<h2>Displaying address...</h2>';
 echo $address->display();
+
+echo '<h2>Testing protected access</h2>';
+echo "Address ID: {$address->_address_id}";
