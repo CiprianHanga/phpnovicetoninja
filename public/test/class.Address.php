@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/** 
  * Ciprian Hanga (c) 2017 (ciprianhanga@gmail.com)
  * Title: Address Class
  * Description: Class for the address objects.
@@ -22,7 +22,7 @@ class Address {
     public $subdivision_name;
     
     // Postal code.
-    public $postal_code;
+    protected $_postal_code;
     
     // Name of the Country.
     public $country_name;
@@ -33,7 +33,15 @@ class Address {
     // When the record was created and last updated.
     protected $_time_created;
     protected $_time_updated;
-
+    
+    /**
+     * Guess the postal code given the subdivision name and city name.
+     * @todo Replace with a database lookup.
+     * @return string
+     */
+    protected function _postal_code_guess () {
+        return 'LOOKUP';
+    }
 
     /**
      * Display an address in HTML.
