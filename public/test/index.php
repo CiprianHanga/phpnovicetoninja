@@ -1,18 +1,11 @@
 <?php
 
 class Person {
-    
-    var $first_name;
-    var $last_name;
+    var $firstname;
+    var $lastname;
     var $age;
     
-    function say_hello() {
-        echo 'hello from inside the class <br>';
+    public function say_hello() {
+        echo 'hello there';
     }
 }
-
-$person1 = new Person();
-$person2 = new Person();
-
-
-
