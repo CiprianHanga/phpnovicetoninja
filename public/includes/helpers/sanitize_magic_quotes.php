@@ -21,5 +21,4 @@ if (get_magic_quotes_gpc()) {
     unset($process);
 }
 
-
 // End of PHP code tag not included as for included files policy.

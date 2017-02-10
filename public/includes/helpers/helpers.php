@@ -7,3 +7,5 @@ function html($text) {
 function htmlout($text) {
     echo html($text);
 }
+
+// End of PHP code tag not included as for included files policy.

@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/includes/helpers/magicquotes.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/helpers/sanitize_magic_quotes.php';
 
 // Display author list
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/db/dbconnect.php';
