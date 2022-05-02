@@ -60,5 +60,8 @@ tags
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### Sublime Text ###
+*.sublime-project
+*.sublime-workspace
 
 # End of https://www.gitignore.io/api/vim,linux,vagrant,netbeans,visualstudiocode
